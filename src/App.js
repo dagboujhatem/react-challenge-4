@@ -14,7 +14,7 @@ function App() {
       <Menu />
       <Route exact path="/" component={ListTodo}/>
       <Route path="/addTodo" component={AddTodo}/>
-      <TestLocal />
+      
       </BrowserRouter>
   );
 }

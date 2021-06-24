@@ -1,20 +1,23 @@
-import React, { Component } from 'react'
-import todo from '../todo.png';
+import React, { Component, Fragment } from "react";
+import ItemTodo from "./ItemTodo";
+
 export class ListTodo extends Component {
-componentWillMount() {
-//     const todo = JSON.parse(localStorage.getItem('todo'));
-//     console.log(todo.name);
-}
-
-
-    render() {
-        return (
-            <div className="container mt-3">
-                <h1>List Todo:</h1>
-                
-            </div>
-        )
+  
+    todosFromLocalStorage = JSON.parse(localStorage.getItem('todos') || '[]');
+    state = {
+        todos: this.todosFromLocalStorage
     }
+   
+    
+    
+  render() {
+    console.log(this.state.todos) ;
+    return (
+      <div className="container mt-3">
+        
+      </div>
+    );
+  }
 }
 
 export default ListTodo;
