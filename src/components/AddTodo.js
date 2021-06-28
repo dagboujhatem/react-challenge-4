@@ -24,9 +24,10 @@ const validate = (values) => {
   }
   if (!values.description) {
     errors.description = "Required";
-  } else if (!/^[A-Z]{10,50}$/i.test(values.description)) {
-    errors.description = "Invalid desciption";
-  }
+  } 
+  // else if (!/^[A-Z]{10,50}$/i.test(values.description)) {
+  //   errors.description = "Invalid desciption";
+  // }
   return errors;
   
 };
