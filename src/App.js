@@ -3,7 +3,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Menu from './components/Menu';
 import AddTodo from './components/AddTodo';
 import ListTodo from './components/ListTodo';
-import TestLocal from './components/TestLocal';
+import DetailTodo from './components/DetailTodo';
 
 
 
@@ -14,6 +14,7 @@ function App() {
       <Menu />
       <Route exact path="/" component={ListTodo}/>
       <Route path="/addTodo" component={AddTodo}/>
+      <Route path="/detailTodo/:idTodo" component={DetailTodo}/>
       
       </BrowserRouter>
   );

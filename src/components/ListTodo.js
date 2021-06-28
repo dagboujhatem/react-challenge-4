@@ -7,10 +7,9 @@ export class ListTodo extends Component {
     todos: this.todosFromLocalStorage,
   };
 
-  handleDelete = (index) => {
+  handleDelete = (e, index) => {
     const todosLocalStorage = JSON.parse(localStorage.getItem("todos") || "[]");
-
-    todosLocalStorage.splice(index, 1);
+    todosLocalStorage.splice(e, 1);
     console.log(todosLocalStorage);
     localStorage.setItem("todos", JSON.stringify(todosLocalStorage));
     this.setState({
@@ -18,6 +17,10 @@ export class ListTodo extends Component {
     });
   };
 
+  handleDetails = (e, index) => {
+      this.props.history.push(`/detailTodo/${e}`);
+      //console.log(e);
+  }
   render() {
     // console.log(this.state.todos) ;
     return (
@@ -40,13 +43,10 @@ export class ListTodo extends Component {
                     <td>
                       <button
                         className="btn btn-danger"
-                        onClick={this.handleDelete.bind(index)}
-                      >
-                        Delete
-                      </button>
+                        onClick={this.handleDelete.bind(this, index)}> Delete</button>
                     </td>
                     <td>
-                      <button className="btn btn-info">Detail</button>
+                      <button className="btn btn-info" onClick={this.handleDetails.bind(this, index)}>Detail</button>
                     </td>
                   </tr>
                 </Fragment>
