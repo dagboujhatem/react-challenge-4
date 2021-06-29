@@ -6,12 +6,16 @@ const initialValues = {
   description: "",
 };
 
-const onSubmit = (values) => {
+const onSubmit = (values, actions) => {
    const todos = JSON.parse(localStorage.getItem('todos') || '[]') ;
   todos.push(values);
   localStorage.setItem('todos',JSON.stringify(todos));
- //localStorage.setItem('todo', );
- //console.log(todos);
+  actions.resetForm({
+    values: {
+      name: '',
+      description: ''
+    },
+  });
 };
 
 const validate = (values) => {
@@ -40,9 +44,6 @@ const AddTodo = () => {
   });
 // console.log(formik.values);
 
- useEffect(() => {
-    //localStorage.setItem('todo', 'helloooo');
- })
 
 
 //console.log(formik.values);
