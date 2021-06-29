@@ -2,24 +2,33 @@ import React, { Component, Fragment } from "react";
 import ItemTodo from "./ItemTodo";
 
 export class ListTodo extends Component {
+  
+  // componentDidMount() {
+  //  // window.location.reload();
+  //  this.setState({});
+  // }
+  
+ 
+  
+
+
   todosFromLocalStorage = JSON.parse(localStorage.getItem("todos") || "[]");
   state = {
     todos: this.todosFromLocalStorage,
   };
 
-  handleDelete = (e, index) => {
+  handleDelete = (index) => {
     const todosLocalStorage = JSON.parse(localStorage.getItem("todos") || "[]");
-    todosLocalStorage.splice(e, 1);
-    console.log(todosLocalStorage);
+    todosLocalStorage.splice(index, 1);
     localStorage.setItem("todos", JSON.stringify(todosLocalStorage));
     this.setState({
       todos: todosLocalStorage,
     });
   };
 
-  handleDetails = (e, index) => {
-      this.props.history.push(`/detailTodo/${e}`);
-      //console.log(e);
+  handleDetails = (index) => {
+      this.props.history.push(`/detailTodo/${index}`);
+      console.log(index);
   }
   render() {
     // console.log(this.state.todos) ;
@@ -44,9 +53,7 @@ export class ListTodo extends Component {
                       <button
                         className="btn btn-danger"
                         onClick={this.handleDelete.bind(this, index)}> Delete</button>
-                    </td>
-                    <td>
-                      <button className="btn btn-info" onClick={this.handleDetails.bind(this, index)}>Detail</button>
+                        <button className="btn btn-info " onClick={this.handleDetails.bind(this, index)}>Detail</button>
                     </td>
                   </tr>
                 </Fragment>

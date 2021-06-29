@@ -15,27 +15,53 @@ class DetailTodo extends Component {
   state = initialtState;
 
   componentDidMount() {
-    const todosLocalStorage = JSON.parse(localStorage.getItem("todos") || "[]");
     const id = this.props.match.params.idTodo;
     const todo = todosLocalStorage[id];
-    this.setState({
-      data: todo,
-    });
+    // console.log(id);
+    // console.log(todo);
+    if(todo !== undefined)
+    {
+     // console.log(this.state);
+
+      this.setState({
+        data: todo,
+      });
+     // console.log(this.state);
+    }else{
+      this.setState(initialtState);
+    }
     //console.log(this.state);
   }
 
   handleName = (e) => {
-    this.setState({
-      data: {
-        name: e.target.value,
-      },
-    });
+    // first way 
+    // let data = this.state.data;
+    // data["name"] = e.target.value;
+    // this.setState({data});
+
+    // second way
+      const newData = Object.assign(this.state.data, {
+        name: e.target.value
+      });
+      this.setState({newData});
+
+    // this.setState({
+    //   data: {
+    //     name: e.target.value,
+    //   },
+    // });
+   // console.log(this.state)
   };
 
   handleDescription = (e) => {
-    this.setState({
-      data: { description: e.target.value },
+    // this.setState({
+    //   data: { description: e.target.value },
+    // });
+    const newData = Object.assign(this.state.data, {
+      description: e.target.value
     });
+    this.setState({newData});
+    //console.log(this.state)
   };
 
   validate = () => {
@@ -76,8 +102,10 @@ class DetailTodo extends Component {
     const isValid = this.validate();
     if (isValid) {
       const id = this.props.match.params.idTodo;
-      todosLocalStorage[id].name = this.state.data.name;
-    todosLocalStorage[id].description = this.state.data.description;
+    //   todosLocalStorage[id].name = this.state.data.name;
+    // todosLocalStorage[id].description = this.state.data.description;
+    //console.log(this.state.data);
+    todosLocalStorage.splice(id, 1, this.state.data);
     
     localStorage.setItem('todos',JSON.stringify(todosLocalStorage));
       //console.log(this.state);
@@ -86,6 +114,7 @@ class DetailTodo extends Component {
       // this.todo.description = this.state.data.description;
       
       this.setState(initialtState);
+      this.props.history.push(`/`);
     }
   };
   handleCancel = () => {
@@ -131,7 +160,7 @@ class DetailTodo extends Component {
                   id="description"
                   type="text"
                   className="form-control"
-                  value={this.state.data.description || ""}
+                  value={this.state.data.description || "" }
                   placeholder="Enter your Description"
                   onChange={this.handleDescription}
                   required
