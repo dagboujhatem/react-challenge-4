@@ -17,6 +17,9 @@ function Menu() {
             <li className="nav-item">
             <NavLink className="nav-link" to="/">List Todo</NavLink>
             </li>
+            <li className="nav-item">
+            <NavLink className="nav-link" to="/weather">Weather</NavLink>
+            </li>
             
             
         </ul>
