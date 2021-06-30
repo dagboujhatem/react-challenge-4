@@ -2,27 +2,13 @@ import React, { Component, Fragment } from "react";
 
 
 export class ListTodo extends Component {
-  state = {
-    todos: [],
-  };
-  componentDidMount() {
-   // window.location.reload();
-   const todosFromLocalStorage = JSON.parse(localStorage.getItem("todos") || "[]");
-  //  this.setState = {
-  //    todos: todosFromLocalStorage,
-  //  };
-  // this.state.todos = todosFromLocalStorage;
-  this.state.todos = [... todosFromLocalStorage];
-   console.log(this.state.todos);
-   this.shouldComponentUpdate(this.props, this.state.todos);
-  }
-
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log("object");
-    return this.state.todos != nextState.todos;
-  }
   
-  // todosFromLocalStorage = JSON.parse(localStorage.getItem("todos") || "[]");
+  constructor(props) {
+    super(props);
+    this.state = {
+      todos: JSON.parse(localStorage.getItem("todos") || "[]"),
+    };
+  }
   
 
   handleDelete = (index) => {
@@ -36,16 +22,14 @@ export class ListTodo extends Component {
 
   handleDetails = (index) => {
       this.props.history.push(`/detailTodo/${index}`);
-    //  console.log(index);
   }
   render() {
-    // console.log(this.state.todos) ;
     return (
-      <div className="container mt-3">
-        <table className="table">
+      <div className="container-fuild my-5">
+        <table className="table table-striped table-hover">
           <thead>
             <tr>
-              <th>Nom</th>
+              <th>Name</th>
               <th>Description</th>
               <th>Actions</th>
             </tr>
@@ -61,7 +45,7 @@ export class ListTodo extends Component {
                       <button
                         className="btn btn-danger"
                         onClick={this.handleDelete.bind(this, index)}> Delete</button>
-                        <button className="btn btn-info " onClick={this.handleDetails.bind(this, index)}>Detail</button>
+                        <button className="btn btn-info text-white" onClick={this.handleDetails.bind(this, index)}>Details</button>
                     </td>
                   </tr>
                 </Fragment>
