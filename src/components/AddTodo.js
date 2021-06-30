@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import { useFormik } from "formik";
 
 const initialValues = {
@@ -21,21 +21,14 @@ const onSubmit = (values, actions) => {
 };
 
 const validate = (values) => {
-  // values.username values.email values.password
-  // errors.username errors.email errors.passowrd
   let errors = {};
-
   if (!values.name) {
-    errors.name = "Required";
+    errors.name = "This field is required.";
   }
   if (!values.description) {
-    errors.description = "Required";
-  } 
-  // else if (!/^[A-Z]{10,50}$/i.test(values.description)) {
-  //   errors.description = "Invalid desciption";
-  // }
+    errors.description = "This field is required.";
+  }
   return errors;
-  
 };
 
 const AddTodo = (props) => {
@@ -44,8 +37,6 @@ const AddTodo = (props) => {
     onSubmit,
     validate,
   });
-// console.log(formik.values);
-//console.log(formik.values);
 
 
 const handleCancel = () => {
@@ -56,6 +47,7 @@ const handleCancel = () => {
     <div className="container-fluid mt-3">
       <div className="row">
         <div className="offset-3 col-6">
+          <h1 className="my-5 text-center text-primary">Add todo</h1>
           <form onSubmit={(e) => { e.preventDefault(); formik.handleSubmit(e); props.history.push('/')}}>
             <div className="form-group">
               <label className="text-start w-100">Name:</label>
@@ -64,7 +56,7 @@ const handleCancel = () => {
                 type="text"
                 className="form-control"
                 value={formik.values.name}
-                placeholder="Enter Todo Name"
+                placeholder="Type the name here"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               />
@@ -76,12 +68,13 @@ const handleCancel = () => {
             </div>
             <div className="form-group mt-3">
               <label className="text-start w-100">Description:</label>
-              <input
+              <textarea
                 id="description"
                 type="text"
+                rows="4"
                 className="form-control"
                 value={formik.values.description}
-                placeholder="Enter Todo Description"
+                placeholder="Type the description here"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               />
@@ -91,9 +84,9 @@ const handleCancel = () => {
                 </div>
               ) : null}
             </div>
-            <div className="form-group mt-1">
-              <button type="submit" className="btn btn-success" disabled={!formik.isValid}>Valider</button>
-              <button className="btn btn-info" onClick={handleCancel}>Cancel</button>
+            <div className="d-grid gap-2 mt-3">
+              <button type="submit" className="btn btn-success btn-block" disabled={!formik.isValid}>Valider</button>
+              <button className="btn btn-secondary btn-block text-white" onClick={handleCancel}>Cancel</button>
             </div>
           </form>
         </div>
