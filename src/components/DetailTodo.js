@@ -131,10 +131,10 @@ class DetailTodo extends Component {
               </div>
               <div className="d-grid gap-2 mt-3">
               <button type="submit" className="btn btn-success">
-                Update
+              <i className="fa fa-save"></i> Update
               </button>
               <button className="btn btn-secondary text-white" onClick={this.handleCancel}>
-                Cancel
+              <i className="fa fa-undo"></i> Cancel
               </button>
               </div>
             </form>

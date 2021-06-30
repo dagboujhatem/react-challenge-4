@@ -84,8 +84,10 @@ const handleCancel = () => {
               ) : null}
             </div>
             <div className="d-grid gap-2 mt-3">
-              <button type="submit" className="btn btn-success" disabled={!formik.isValid}>Valider</button>
-              <button className="btn btn-secondary text-white" onClick={handleCancel}>Cancel</button>
+              <button type="submit" className="btn btn-success" disabled={!formik.isValid}>
+              <i className="fa fa-save"></i> Valider</button>
+              <button className="btn btn-secondary text-white" onClick={handleCancel}>
+              <i className="fa fa-undo"></i> Cancel</button>
             </div>
           </form>
         </div>
