@@ -70,7 +70,6 @@ const handleCancel = () => {
               <label className="text-start w-100">Description:</label>
               <textarea
                 id="description"
-                type="text"
                 rows="4"
                 className="form-control"
                 value={formik.values.description}
@@ -85,8 +84,8 @@ const handleCancel = () => {
               ) : null}
             </div>
             <div className="d-grid gap-2 mt-3">
-              <button type="submit" className="btn btn-success btn-block" disabled={!formik.isValid}>Valider</button>
-              <button className="btn btn-secondary btn-block text-white" onClick={handleCancel}>Cancel</button>
+              <button type="submit" className="btn btn-success" disabled={!formik.isValid}>Valider</button>
+              <button className="btn btn-secondary text-white" onClick={handleCancel}>Cancel</button>
             </div>
           </form>
         </div>
