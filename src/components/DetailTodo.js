@@ -17,20 +17,14 @@ class DetailTodo extends Component {
   componentDidMount() {
     const id = this.props.match.params.idTodo;
     const todo = todosLocalStorage[id];
-    // console.log(id);
-    // console.log(todo);
     if(todo !== undefined)
     {
-     // console.log(this.state);
-
       this.setState({
         data: todo,
       });
-     // console.log(this.state);
     }else{
       this.setState(initialtState);
     }
-    //console.log(this.state);
   }
 
   handleName = (e) => {
@@ -44,32 +38,20 @@ class DetailTodo extends Component {
         name: e.target.value
       });
       this.setState({newData});
-
-    // this.setState({
-    //   data: {
-    //     name: e.target.value,
-    //   },
-    // });
-   // console.log(this.state)
   };
 
   handleDescription = (e) => {
-    // this.setState({
-    //   data: { description: e.target.value },
-    // });
     const newData = Object.assign(this.state.data, {
       description: e.target.value
     });
     this.setState({newData});
-    //console.log(this.state)
   };
 
   validate = () => {
     let nameError = "";
     let descriptionError = "";
-
     if (!this.state.data.name) {
-      nameError = "name is required";
+      nameError = "This field is required.";
       document.getElementById("name").classList.remove("is-valid");
       document.getElementById("name").classList.add("is-invalid");
     } else {
@@ -82,7 +64,7 @@ class DetailTodo extends Component {
     }
 
     if (!this.state.data.description) {
-      nameError = "description is required";
+      nameError = "This field is required.";
       document.getElementById("description").classList.remove("is-valid");
       document.getElementById("description").classList.add("is-invalid");
     } else {
@@ -102,17 +84,8 @@ class DetailTodo extends Component {
     const isValid = this.validate();
     if (isValid) {
       const id = this.props.match.params.idTodo;
-    //   todosLocalStorage[id].name = this.state.data.name;
-    // todosLocalStorage[id].description = this.state.data.description;
-    //console.log(this.state.data);
-    todosLocalStorage.splice(id, 1, this.state.data);
-    
-    localStorage.setItem('todos',JSON.stringify(todosLocalStorage));
-      //console.log(this.state);
-      //clear form
-      // this.todo.name = this.state.data.name;
-      // this.todo.description = this.state.data.description;
-      
+      todosLocalStorage.splice(id, 1, this.state.data);
+      localStorage.setItem('todos',JSON.stringify(todosLocalStorage));
       this.setState(initialtState);
       this.props.history.push(`/`);
     }
@@ -120,25 +93,13 @@ class DetailTodo extends Component {
   handleCancel = () => {
     this.props.history.push("/");
   };
-
-  // componentDidUpdate(prevProps, prevState) {
-  //   const todosLocalStorage = JSON.parse(localStorage.getItem("todos") || "[]");
-  //   const id = this.props.match.params.idTodo;
-    
-  //   todosLocalStorage[id].name = this.state.data.name;
-  //   todosLocalStorage[id].description = this.state.data.description;
-    
-  //   localStorage.setItem('todos',JSON.stringify(todosLocalStorage));
-  //   console.log(todosLocalStorage);
-  // }
   
   render() {
-    // const { name, description } = this.state.data;
-    // console.log(description);
     return (
       <div className="container-fluid mt-3">
         <div className="row">
           <div className="offset-3 col-6">
+          <h1 className="my-5 text-center text-primary">Todo details</h1>
             <form onSubmit={this.handleSubmit}>
               <div className="form-group">
                 <label className="text-start w-100">Name:</label>
@@ -147,7 +108,7 @@ class DetailTodo extends Component {
                   type="text"
                   className="form-control"
                   value={this.state.data.name || ""}
-                  placeholder="Enter name"
+                  placeholder="Type the name here"
                   onChange={this.handleName}
                 />
                 <div className="text-start w-100 invalid-feedback d-block">
@@ -156,12 +117,12 @@ class DetailTodo extends Component {
               </div>
               <div className="form-group mt-3">
                 <label className="text-start w-100">Desription:</label>
-                <input
+                <textarea
                   id="description"
-                  type="text"
+                  rows="4"
                   className="form-control"
                   value={this.state.data.description || "" }
-                  placeholder="Enter your Description"
+                  placeholder="Type the description here"
                   onChange={this.handleDescription}
                   required
                 />
@@ -169,14 +130,14 @@ class DetailTodo extends Component {
                   {this.state.descriptionError}
                 </div>
               </div>
-
+              <div className="d-grid gap-2 mt-3">
               <button type="submit" className="btn btn-success">
-                Valider
+                Update
               </button>
-
-              <button className="btn btn-secondary" onClick={this.handleCancel}>
+              <button className="btn btn-secondary text-white" onClick={this.handleCancel}>
                 Cancel
               </button>
+              </div>
             </form>
           </div>
         </div>
