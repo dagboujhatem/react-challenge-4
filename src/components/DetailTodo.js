@@ -131,7 +131,8 @@ class DetailTodo extends Component {
                 </div>
               </div>
               <div className="d-grid gap-2 mt-3">
-              <button type="submit" className="btn btn-success">
+              <button type="submit" className="btn btn-success"
+              disabled={this.state.data.name=="" || this.state.data.description==""}>
                 Update
               </button>
               <button className="btn btn-secondary text-white" onClick={this.handleCancel}>
