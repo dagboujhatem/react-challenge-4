@@ -1,21 +1,29 @@
 import React, { Component, Fragment } from "react";
-import ItemTodo from "./ItemTodo";
+
 
 export class ListTodo extends Component {
-  
-  // componentDidMount() {
-  //  // window.location.reload();
-  //  this.setState({});
-  // }
-  
- 
-  
-
-
-  todosFromLocalStorage = JSON.parse(localStorage.getItem("todos") || "[]");
   state = {
-    todos: this.todosFromLocalStorage,
+    todos: [],
   };
+  componentDidMount() {
+   // window.location.reload();
+   const todosFromLocalStorage = JSON.parse(localStorage.getItem("todos") || "[]");
+  //  this.setState = {
+  //    todos: todosFromLocalStorage,
+  //  };
+  // this.state.todos = todosFromLocalStorage;
+  this.state.todos = [... todosFromLocalStorage];
+   console.log(this.state.todos);
+   this.shouldComponentUpdate(this.props, this.state.todos);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log("object");
+    return this.state.todos != nextState.todos;
+  }
+  
+  // todosFromLocalStorage = JSON.parse(localStorage.getItem("todos") || "[]");
+  
 
   handleDelete = (index) => {
     const todosLocalStorage = JSON.parse(localStorage.getItem("todos") || "[]");
@@ -28,7 +36,7 @@ export class ListTodo extends Component {
 
   handleDetails = (index) => {
       this.props.history.push(`/detailTodo/${index}`);
-      console.log(index);
+    //  console.log(index);
   }
   render() {
     // console.log(this.state.todos) ;
