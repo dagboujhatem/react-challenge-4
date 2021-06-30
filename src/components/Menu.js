@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, NavLink} from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
 
 function Menu() {
     return (
@@ -20,8 +20,6 @@ function Menu() {
             <li className="nav-item">
             <NavLink className="nav-link" to="/weather">Weather</NavLink>
             </li>
-            
-            
         </ul>
     </div>
   </div>
