@@ -47,10 +47,11 @@ export class ListTodo extends Component {
                           <button
                             className="btn btn-danger"
                             onClick={this.handleDelete.bind(this, index)}>
-                            <i className="fa fa-trash"></i>   Delete
-                      </button>
+                            <i className="fa fa-trash"></i> Delete
+                          </button>
                           <button className="btn btn-info text-white" onClick={this.handleDetails.bind(this, index)}>
-                            <i className="fa fa-edit"></i> Details</button>
+                            <i className="fa fa-edit"></i> Details
+                          </button>
                         </td>
                       </tr>
                     </Fragment>
