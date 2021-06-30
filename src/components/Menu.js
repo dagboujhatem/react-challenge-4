@@ -5,7 +5,7 @@ function Menu() {
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
-         <NavLink className="navbar-brand" to="/">TODO Application</NavLink>
+         <NavLink className="navbar-brand" to="/home">TODO Application</NavLink>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>
@@ -15,7 +15,7 @@ function Menu() {
             <NavLink className="nav-link" to="/addTodo">Ajout Todo</NavLink>
             </li>
             <li className="nav-item">
-            <NavLink className="nav-link" to="/">List Todo</NavLink>
+            <NavLink className="nav-link" to="/home">List Todo</NavLink>
             </li>
             <li className="nav-item">
             <NavLink className="nav-link" to="/weather">Weather</NavLink>

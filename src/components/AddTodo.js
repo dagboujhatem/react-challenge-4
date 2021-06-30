@@ -40,7 +40,7 @@ const AddTodo = (props) => {
 
 
 const handleCancel = () => {
-  props.history.push("/");
+  props.history.push("/home");
 };
 
   return (
@@ -48,7 +48,7 @@ const handleCancel = () => {
       <div className="row">
         <div className="offset-3 col-6">
           <h1 className="my-5 text-center text-primary">Add todo</h1>
-          <form onSubmit={(e) => { e.preventDefault(); formik.handleSubmit(e); props.history.push('/')}}>
+          <form onSubmit={(e) => { e.preventDefault(); formik.handleSubmit(e); props.history.push('/home')}}>
             <div className="form-group">
               <label className="text-start w-100">Name:</label>
               <input

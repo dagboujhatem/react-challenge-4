@@ -87,11 +87,11 @@ class DetailTodo extends Component {
       todosLocalStorage.splice(id, 1, this.state.data);
       localStorage.setItem('todos',JSON.stringify(todosLocalStorage));
       this.setState(initialtState);
-      this.props.history.push(`/`);
+      this.props.history.push(`/home`);
     }
   };
   handleCancel = () => {
-    this.props.history.push("/");
+    this.props.history.push("/home");
   };
   
   render() {
