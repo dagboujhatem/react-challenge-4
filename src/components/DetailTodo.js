@@ -124,15 +124,13 @@ class DetailTodo extends Component {
                   value={this.state.data.description || "" }
                   placeholder="Type the description here"
                   onChange={this.handleDescription}
-                  required
                 />
                 <div className="text-start w-100 invalid-feedback d-block">
                   {this.state.descriptionError}
                 </div>
               </div>
               <div className="d-grid gap-2 mt-3">
-              <button type="submit" className="btn btn-success"
-              disabled={this.state.data.name=="" || this.state.data.description==""}>
+              <button type="submit" className="btn btn-success">
                 Update
               </button>
               <button className="btn btn-secondary text-white" onClick={this.handleCancel}>
